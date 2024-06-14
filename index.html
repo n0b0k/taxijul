@@ -19,15 +19,20 @@
     <!-- meta character set -->
     <meta charset="UTF-8" />
     <!-- Site Title -->
-    <title>Taxi</title>
-
+    <title>Allo Taxi</title>
     <link
       href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700"
       rel="stylesheet"
     />
-    <!--
-			CSS
-			============================================= -->
+	<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
+	<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+   (function(){
+      emailjs.init("YOUR_USER_ID");
+   })();
+</script>
+
+    <!--CSS============================================= -->
     <link rel="stylesheet" href="css/linearicons.css" />
     <link rel="stylesheet" href="css/font-awesome.min.css" />
     <link rel="stylesheet" href="css/bootstrap.css" />
@@ -42,14 +47,14 @@
       <div class="header-top"></div>
       <div class="container main-menu">
         <div class="row align-items-center justify-content-between d-flex">
-          <a href="index.html"><img src="img/logo.png" alt="" title="" /></a>
+          <a href="#"><img src="" alt="" title="" />ALLO Taxi Rambouillet</a>
           <nav id="nav-menu-container">
             <ul class="nav-menu">
-              <li class="menu-active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
+              <li class="menu-active"><a href="#">Acceuil</a></li>
+              <li><a href="#about">À propos</a></li>
               <li><a href="#service">Services</a></li>
-              <li><a href="#gallery">Gallery</a></li>
-              <li><a href="#social">Socials</a></li>
+              <li><a href="#gallery">Gallerie</a></li>
+              <li><a href="#social">Réseaux Sociaux</a></li>
             </ul>
           </nav>
           <!-- #nav-menu-container -->
@@ -66,94 +71,90 @@
           class="row fullscreen d-flex align-items-center justify-content-between"
         >
           <div class="banner-content col-lg-6 col-md-6">
-            <h6 class="text-white">Need a ride? just call</h6>
-            <h1 class="text-uppercase">1234567890</h1>
+            <h6 class="text-white">Besoin d'un taxi fiable et confortable ?</h6>
+            <h1 class="text-uppercase">01 76 52 37 04</h1>
             <p class="pt-10 pb-10 text-white">
-              Whether you enjoy city breaks or extended holidays in the sun, you
-              can always improve your travel experiences by staying in a small.
+				Faites confiance au Groupement Associatif des Taxis Communaux de Rambouillet !
+				<br>
+				<br>
+				Plus de 15 chauffeurs expérimentés et nos véhicules modernes sont à votre disposition pour tous vos déplacements.
             </p>
-            <a href="tel:+1234567890" class="primary-btn text-uppercase"
-              >Call for taxi</a
+            <a href="tel:01 76 52 37 04" class="primary-btn text-uppercase"
+              >Appelez Nous!</a
             >
           </div>
-          <div class="col-lg-4 col-md-6 header-right">
-            <h4 class="pb-30">Book Your Texi Online!</h4>
-            <form class="form" id="taxi-form">
-              <div class="from-group">
-                <input
-                  class="form-control txt-field"
-                  type="text"
-                  name="name"
-                  placeholder="Your name"
-                  onfocus="this.placeholder = ''"
-                  onblur="this.placeholder = 'Your name'"
-                />
-                <input
-                  class="form-control txt-field"
-                  type="email"
-                  name="email"
-                  placeholder="Email address"
-                  onfocus="this.placeholder = ''"
-                  onblur="this.placeholder = 'Email address'"
-                />
-                <input
-                  class="form-control txt-field"
-                  type="tel"
-                  name="phone"
-                  placeholder="Phone number"
-                  onfocus="this.placeholder = ''"
-                  onblur="this.placeholder = 'Phone number'"
-                />
-              </div>
-              <div class="form-group">
-                <div class="default-select" id="default-select">
-                  <select>
-                    <option value="" disabled selected hidden>
-                      From Destination
-                    </option>
-                    <option value="1">Destination One</option>
-                    <option value="2">Destination Two</option>
-                    <option value="3">Destination Three</option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="default-select" id="default-select2">
-                  <select>
-                    <option value="" disabled selected hidden>
-                      To Destination
-                    </option>
-                    <option value="1">Destination One</option>
-                    <option value="2">Destination Two</option>
-                    <option value="3">Destination Three</option>
-                  </select>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="input-group dates-wrap">
-                  <input
-                    id="datepicker2"
-                    class="dates form-control"
-                    placeholder="Date & time"
-                    type="text"
-                  />
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"
-                      ><span class="lnr lnr-calendar-full"></span
-                    ></span>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <button
-                  class="btn btn-default btn-lg btn-block text-center text-uppercase"
-                  id="submit-button"
-                >
-                  Make reservation
-                </button>
-              </div>
-            </form>
-          </div>
+		  <div class="col-lg-4 col-md-6 header-right">
+			<h4 class="pb-30">Book Your Taxi Online!</h4>
+			<form class="form" id="bookingForm">
+				<div class="form-group">
+					<input class="form-control txt-field" type="text" name="name" placeholder="Your name" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your name'" required>
+					<input class="form-control txt-field" type="email" name="email" placeholder="Email address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email address'" required>
+					<input class="form-control txt-field" type="tel" name="phone" placeholder="Phone number" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone number'" required>
+				</div>
+				<div class="form-group">
+					<input id="departure" class="form-control" type="text" name="fromDestination" placeholder="Départ" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Départ'" required>
+				</div>
+				<div class="form-group">
+					<input id="arrival" class="form-control" type="text" name="toDestination" placeholder="Arrivée" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Arrivée'" required>
+				</div>
+				<div class="form-group">
+					<div class="input-group dates-wrap">
+						<input id="datepicker2" class="dates form-control" name="datetime" placeholder="Date & time" type="text" required>
+						<div class="input-group-prepend">
+							<span class="input-group-text"><span class="lnr lnr-calendar-full"></span></span>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<button class="btn btn-default btn-lg btn-block text-center text-uppercase" type="submit">Make reservation</button>
+				</div>
+			</form>
+		</div>
+		
+		<script>
+			function initAutocomplete() {
+				var departure = new google.maps.places.Autocomplete(document.getElementById('departure'), { types: ['geocode'] });
+				var arrival = new google.maps.places.Autocomplete(document.getElementById('arrival'), { types: ['geocode'] });
+		
+				departure.addListener('place_changed', function () {
+					var place = departure.getPlace();
+					console.log('Departure: ', place.formatted_address);
+				});
+		
+				arrival.addListener('place_changed', function () {
+					var place = arrival.getPlace();
+					console.log('Arrival: ', place.formatted_address);
+				});
+			}
+		
+			document.getElementById('bookingForm').addEventListener('submit', function(event) {
+				event.preventDefault(); // Prevent the default form submission
+		
+				// Collect form data
+				const formData = {
+					name: event.target.name.value,
+					email: event.target.email.value,
+					phone: event.target.phone.value,
+					fromDestination: event.target.fromDestination.value,
+					toDestination: event.target.toDestination.value,
+					datetime: event.target.datetime.value,
+				};
+		
+				// Send email using EmailJS
+				emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', formData)
+				.then((response) => {
+					console.log('SUCCESS!', response.status, response.text);
+					alert('Your reservation has been sent successfully!');
+				}, (error) => {
+					console.log('FAILED...', error);
+					alert('Failed to send your reservation. Please try again.');
+				});
+			});
+		
+			// Initialize Google Maps Autocomplete after the API script loads
+			google.maps.event.addDomListener(window, 'load', initAutocomplete);
+		</script>
+		
 
           <script>
             const form = document.getElementById("taxi-form");
@@ -186,11 +187,11 @@
               // Simulate sending email (for now)
               console.log("Sending email...");
               console.log("Email Body:", messageBody);
-              console.log("Recipient:", "essodong@icloud.com");
+              console.log(
+                "Recipient:",
+                "taxis.rambouillet.territoires@gmail.com"
+              );
               console.log("Email sent (simulation)");
-
-              // You can implement an email sending service here in the future
-              // This would likely involve a 3rd party API or server-side functionality
             });
           </script>
         </div>
@@ -206,51 +207,49 @@
             <img class="img-fluid" src="img/about-img.jpg" alt="" />
           </div>
           <div class="col-lg-6 about-right" id="about">
-            <h1>Globally Connected by Large Network</h1>
-            <h4>We are here to listen from you deliver exellence</h4>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim
-              ad minim. Lorem ipsum dolor sit amet, consectetur adipisicing
-              elit, sed do eiusmod tempor.
-            </p>
-            <a class="text-uppercase primary-btn" href="#">Get Details</a>
+            <h1>Connecté partout en France</h1>
+            <h4>
+              Déplacez-vous en toute confiance avec nos chauffeurs
+              professionnels.
+            </h4>
+            <a class="text-uppercase primary-btn" href="#service"
+              > En savoir plus</a
+            >
           </div>
         </div>
       </div>
     </section>
     <!-- End home-about Area -->
-
     <!-- Start services Area -->
     <section class="services-area pb-120" id="service">
       <div class="container">
         <div class="row section-title">
-          <h1>What Services we offer to our clients</h1>
-          <p>Who are in extremely love with eco friendly system.</p>
-        </div>
+          <h1>Nos services à votre disposition</h1>
+		  <p>Soucieux de l'environnement et engagés dans une démarche éco-responsable.</p>
+		        </div>
         <div class="row">
           <div class="col-lg-4 single-service">
             <span class="lnr lnr-car"></span>
-            <a href="#"><h4>Taxi Service</h4></a>
+            <a href="#"><h4>	Service de Transport </h4></a>
             <p>
-              Usage of the Internet is becoming more common due to rapid
-              advancement of technology and power.
-            </p>
-          </div>
-          <div class="col-lg-4 single-service">
-            <span class="lnr lnr-briefcase"></span>
-            <a href="#"><h4>Office Pick-ups</h4></a>
-            <p>
-              Usage of the Internet is becoming more common due to rapid
-              advancement of technology and power.
+			 Notre flotte de taxis modernes et bien entretenus est prête à vous emmener partout où vous devez aller, 24H/24 et 7J/7. 
+			 <br>
             </p>
           </div>
           <div class="col-lg-4 single-service">
             <span class="lnr lnr-bus"></span>
-            <a href="#"><h4>Event Transportation</h4></a>
+            <a href="#"><h4>	Transport événementiel </h4></a>
             <p>
-              Usage of the Internet is becoming more common due to rapid
-              advancement of technology and power.
+			 Nous fournissons un transport fiable et élégant pour tous les types d'événements, des mariages et céminaires. 
+				<br>
+            </p>
+          </div>
+          <div class="col-lg-4 single-service">
+            <span class="lnr lnr-briefcase"></span>
+            <a href="#"><h4>Transport longue distance</h4></a>
+            <p>
+				 Embarquez pour votre voyage longue ou courte distance en toute tranquillité d'esprit entre les mains chauffeurs expérimentés. 
+				<br>
             </p>
           </div>
         </div>
@@ -262,8 +261,8 @@
     <section class="image-gallery-area section-gap" id="gallery">
       <div class="container">
         <div class="row section-title">
-          <h1>Image Gallery that we like to share</h1>
-          <p>Who are in extremely love with eco friendly system.</p>
+          <h1>Découvrez Rambouillet sous son meilleur jour avec notre galerie de photos !</h1>
+		  
         </div>
         <div class="row">
           <div class="col-lg-4 single-gallery">
@@ -286,10 +285,28 @@
             <a href="img/g3.jpg" class="img-gal"
               ><img class="img-fluid" src="img/g3.jpg" alt=""
             /></a>
-            <a href="img/g6.jpg" class="img-gal"
+            <!-- <a href="img/g6.jpg" class="img-gal"
               ><img class="img-fluid" src="img/g6.jpg" alt=""
+            /></a> -->
+			
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-4 single-gallery">
+            <a href="img/g7.jpg" class="img-gal"
+              ><img class="img-fluid" src="img/g7.jpg" alt=""
             /></a>
           </div>
+          <div class="col-lg-4 single-gallery">
+            <a href="img/g8.jpg" class="img-gal"
+              ><img class="img-fluid" src="img/g8.jpg" alt=""
+            /></a>
+          </div>
+		  <div class="col-lg-4 single-gallery">
+		  <a href="img/g6.jpg"	class="img-gal"
+		  ><img class="img-fluid" src="img/g6.jpg" alt=""
+		/></a>
         </div>
       </div>
     </section>
@@ -298,29 +315,28 @@
     <footer class="footer-area section-gap">
       <div class="container">
         <div class="row">
-          <div class="col-lg-2 col-md-6 col-sm-6 social-widget">
+          <div class="col-lg-2 col-md-6 col-sm-6 social-widget" id="social">
             <div class="single-footer-widget">
-              <h6>Follow Us</h6>
-              <p>Let us be social</p>
+              <h6>Restez connectés!</h6>
+              <p>Suivez-nous sur les réseaux sociaux</p>
               <div class="footer-social d-flex align-items-center">
-                <a href="#"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-twitter"></i></a>
-                <a href="#"><i class="fa fa-dribbble"></i></a>
-                <a href="#"><i class="fa fa-behance"></i></a>
+                <a href="https://www.facebook.com/share/GT1WwJpx3qaGJApV/"
+                  ><i class="fa fa-facebook"></i
+                ></a>
+                <!-- <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a> -->
               </div>
             </div>
           </div>
           <p class="mt-80 mx-auto footer-text col-lg-12">
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
             Copyright &copy;
             <script>
               document.write(new Date().getFullYear());
             </script>
-            All rights reserved
+            Allo Taxi Rambouillet
           </p>
         </div>
       </div>
-      <img class="footer-bottom" src="img/footer-bottom.png" alt="" />
     </footer>
     <!-- End footer Area -->
     <script src="js/vendor/jquery-2.2.4.min.js"></script>
